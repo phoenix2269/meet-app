@@ -8,7 +8,7 @@ Calendar API to fetch upcoming events.
 
 ## Demo
 
-The deployed app can be viewed [here.](https://dd-myflix-ui.netlify.app/)
+The deployed app can be viewed [here.](https://phoenix2269.github.io/meet-app/)
 
 ## Description
 
