@@ -2,7 +2,7 @@ import React from 'react';
 
 const NumberOfEvents = ({ eventNumber, onEventNumberChange }) => {
     const handleInputChanged = (value) => {
-        const inputValue = parseInt(value, 32);  // Convert input to a number
+        const inputValue = parseInt(value);  // Convert input to a number
 
         if (inputValue) {
             onEventNumberChange(inputValue);

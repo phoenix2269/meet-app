@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import NumberOfEvents from "../components/NumberOfEvents";
 import App from "../App";
@@ -26,5 +26,17 @@ describe("<NumberOfEvents /> component", () => {
         const numberTextBox = screen.getByPlaceholderText("Enter a number");
         await userEvent.type(numberTextBox, "10");
         expect(handleEventNumberChange).toHaveBeenCalled();
+    });
+});
+
+describe("<NumberOfEvents /> integration", () => {
+    test("renders a specific number of events when the app is rendered", async () => {
+        render(<App />);
+        const numberOfEvents = screen.getByTestId("number-of-events");
+        const numberTextBox = within(numberOfEvents).getByRole("textbox");
+        await userEvent.type(numberTextBox, "{backspace}{backspace}10");
+        await screen.findAllByRole("listitem");
+        const eventListItems = screen.queryAllByRole("listitem");
+        expect(eventListItems.length).toBe(10);
     });
 });
