@@ -12,7 +12,7 @@ const NumberOfEvents = ({ eventNumber, onEventNumberChange }) => {
     };
 
     return (
-        <div data-testid="number-of-events">
+        <div id="number-of-events" data-testid="number-of-events">
             <input
                 type="text"
                 className="textbox"
