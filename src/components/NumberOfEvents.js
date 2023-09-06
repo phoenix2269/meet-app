@@ -1,13 +1,17 @@
 import React from 'react';
 
-const NumberOfEvents = ({ eventNumber, onEventNumberChange }) => {
+const NumberOfEvents = ({ eventNumber, onEventNumberChange, setErrorAlert }) => {
     const handleInputChanged = (value) => {
         const inputValue = parseInt(value);  // Convert input to a number
 
-        if (inputValue) {
-            onEventNumberChange(inputValue);
-        } else {
+        if (isNaN(inputValue) || inputValue <= 0) {
             onEventNumberChange(0);
+            setErrorAlert('Value is not a number or less than 1');
+        // } else if (inputValue <= 0) {
+        //     setErrorAlert('Minimum value is 1');
+        } else {
+            setErrorAlert("");
+            onEventNumberChange(inputValue);
         }
     };
 

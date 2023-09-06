@@ -5,27 +5,29 @@ import App from '../App';
 import { extractLocations, getEvents } from '../api';
 
 describe('<CitySearch /> component', () => {
-/*     let CitySearchComponent;
+    //  let CitySearchComponent;
 
-    beforeEach(() => {
-        CitySearchComponent = render(<CitySearch />);
+/*     beforeEach(() => {
+        CitySearchComponent = render(
+            <CitySearch allLocations={[]} setInfoAlert={() =>{}} />
+        );
     }); */
 
     test('renders text input', () => {
-        render(<CitySearch allLocations={[]} />);
+        render(<CitySearch allLocations={[]} setInfoAlert={() => {}} />);
         const cityTextBox = screen.queryByRole('textbox');
         expect(cityTextBox).toBeInTheDocument();
         expect(cityTextBox).toHaveClass('city');
     });
 
     test('suggestions list is hidden by default', () => {
-        render(<CitySearch allLocations={[]} />);
+        render(<CitySearch allLocations={[]} setInfoAlert={() => {}} />);
         const suggestionList = screen.queryByRole('list');
         expect(suggestionList).not.toBeInTheDocument();
     });
 
     test('renders a list of suggestions when city textbox gains focus', async () => {
-        render(<CitySearch allLocations={[]} />);
+        render(<CitySearch allLocations={[]} setInfoAlert={() => {}} />);
         const user = userEvent.setup();
         const cityTextBox = screen.queryByRole('textbox');
         await user.click(cityTextBox);
@@ -38,7 +40,7 @@ describe('<CitySearch /> component', () => {
         const user = userEvent.setup();
         const allEvents = await getEvents();
         const allLocations = extractLocations(allEvents);
-        render(<CitySearch allLocations={allLocations} />);
+        render(<CitySearch allLocations={allLocations} setInfoAlert={() => {}} />);
 
         // user types "Berlin" in City textbox
         const cityTextBox = screen.queryByRole('textbox');
@@ -61,7 +63,7 @@ describe('<CitySearch /> component', () => {
         const user = userEvent.setup();
         const allEvents = await getEvents();
         const allLocations = extractLocations(allEvents);
-        render(<CitySearch allLocations={allLocations} setCurrentCity={() => { }} />);
+        render(<CitySearch allLocations={allLocations} setCurrentCity={() => { }} setInfoAlert={() => {}} />);
 
         const cityTextBox = screen.queryByRole('textbox');
         await user.type(cityTextBox, "Berlin");
