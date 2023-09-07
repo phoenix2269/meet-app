@@ -1,4 +1,5 @@
 import mockData from './mock-data';
+import NProgress from 'nprogress';
 
 /*
  * @param {*} events:
@@ -48,8 +49,17 @@ const getToken = async (code) => {
  * This function will fetch the list of all events
 */
 export const getEvents = async () => {
+    NProgress.start();
+
     if (window.location.href.startsWith('http://localhost')) {
+        NProgress.done();
         return mockData;
+    }
+
+    if (!navigator.onLine) {
+        const events = localStorage.getItem("lastEvents");
+        NProgress.done();
+        return events ? JSON.parse(events) : [];
     }
 
     const token = await getAccessToken();
@@ -60,6 +70,8 @@ export const getEvents = async () => {
         const response = await fetch(url);
         const result = await response.json();
         if (result) {
+            localStorage.setItem("lastEvents", JSON.stringify(result.events));
+            NProgress.done();
             return result.events;
         } else return null;
     }
