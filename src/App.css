@@ -34,7 +34,7 @@ input[type="number"] {
   width: 250px;
 }
 
-#city-search {
+#city-search, #number-of-events {
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -68,6 +68,13 @@ input[type="number"] {
   background-color: #bcdcdb;
 }
 
+#event-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 15px;
+  row-gap: 15px;
+}
+
 .event {
   padding: 10px 10px 35px;
   margin-bottom: 10px;
@@ -93,4 +100,17 @@ input[type="number"] {
   left: 20px;
   width: 250px;
   z-index: 1000;
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 3%;
+  padding: 1% 0;
+}
+
+@media screen and (max-width: 768px) {
+  #event-list, .charts-container {
+    grid-template-columns: 1fr;
+  }
 }
